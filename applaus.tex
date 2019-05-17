@@ -104,7 +104,14 @@
 
 % reihe 2
 \node[
-	xshift=6cm,
+	xscale=-1,
+	xshift=-0.8cm,
+	yshift=-1.37cm+sin(10*\thepage)*cos(10*\thepage)*0.08cm
+] at (0,0) {
+	\includegraphics[width=0.7cm]{skillmon.png}
+};
+\node[
+	xshift=7cm,
 	yshift=-1.3cm+sin(10*\thepage)*cos(10*\thepage)*0.08cm
 ] at (0,0) {
 	\includegraphics[width=10.5cm,page=8]{rows}
