@@ -11,6 +11,7 @@
 \usepackage{tikzducks}
 \usepackage{pdfpages}
 \usetikzlibrary{positioning,shapes}
+\usetikzlibrary{overlay-beamer-styles}
 
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{background canvas}{%
@@ -25,18 +26,22 @@
 
 \begin{document}
 
-{
-\setbeamertemplate{background canvas}{}
-\setbeamercolor{background canvas}{bg=}
-\includepdf[pages=-]{walkuere}
-\includepdf[pages=-]{walkuere}
-\includepdf[pages=-]{walkuere}
-\includepdf[pages=-]{walkuere}
-\includepdf[pages=-]{walkuere}
+\foreach \x in {0,...,30}{
+\begin{frame}
+\begin{tikzpicture}[overlay,remember picture]
+	\node at ([xshift=9.4 cm]current page.center){\includegraphics[height=\paperheight]{vorhang}};
+	\begin{scope}[xscale=-1]
+		\node at ([xshift=9.4 cm]current page.center){\includegraphics[height=\paperheight]{vorhang}};
+	\end{scope}
+\end{tikzpicture}
+\end{frame}
 }
 
+
 \begin{frame}
-\begin{tikzpicture}[remember picture, overlay,yshift=-1.7cm]
+\begin{tikzpicture}[remember picture, overlay]
+
+\begin{scope}[yshift=-1.7cm]
 
 % reihe 7
 \node[
@@ -178,6 +183,17 @@
 
 \node at (9.7,-2.2) {\includegraphics[width=1.5cm]{viking_back}};
 \node[xscale=-1] at (4.5,-2.4) {\includegraphics[width=1.5cm]{viking_back}};
+
+\end{scope}
+
+\begin{scope}
+	\foreach \x in {9.4,9.5,...,16}{
+		\node<+> at ([xshift=\x cm]current page.center){\includegraphics[height=\paperheight]{vorhang}};
+		\begin{scope}[xscale=-1]
+			\node<.> at ([xshift=\x cm]current page.center){\includegraphics[height=\paperheight]{vorhang}};
+		\end{scope}
+	}
+\end{scope}
 
 \end{tikzpicture}
 \pause[150]
