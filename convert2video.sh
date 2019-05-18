@@ -1,5 +1,31 @@
 #####################################################################
 #
+# titel
+#
+#####################################################################
+
+# compile
+pdflatex titel_rep
+pdflatex titel_rep
+
+# clean up old video
+rm titel_rep.mp4
+
+# convert to png images
+convert -density 160 titel_rep.pdf titel_rep.png
+
+# convert to video
+ffmpeg  -ss 00:00:00 -i titel_rep-%d.png titel_rep_raw.mp4
+
+# repair video
+HandBrakeCLI --crop 0:0:0:0  -i titel_rep_raw.mp4 -o titel_rep.mp4
+
+# clean up
+rm titel_rep-*.png
+rm titel_rep_raw.mp4
+
+#####################################################################
+#
 # first part with walkuers
 #
 #####################################################################
@@ -49,3 +75,31 @@ HandBrakeCLI --crop 0:0:0:0  -i applaus_raw.mp4 -o applaus.mp4
 # clean up
 rm applaus-*.png
 rm applaus_raw.mp4
+
+#####################################################################
+#
+# credits
+#
+#####################################################################
+
+# compile
+pdflatex credits_rep
+pdflatex credits_rep
+
+# clean up old video
+rm credits_rep.mp4
+
+# convert to png images
+convert -density 160 credits_rep.pdf credits_rep.png
+
+# convert to video
+ffmpeg  -ss 00:00:00 -i credits_rep-%d.png credits_rep_raw.mp4
+
+# repair video
+HandBrakeCLI --crop 0:0:0:0  -i credits_rep_raw.mp4 -o credits_rep.mp4
+
+# clean up
+rm credits_rep-*.png
+rm credits_rep_raw.mp4
+
+
